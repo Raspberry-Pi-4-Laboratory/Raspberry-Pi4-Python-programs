@@ -1,4 +1,4 @@
-# 24b LED Binary Counter Trix Python program example:
+# 24b LED Binary Counter Trix Gold Python program example:
 
 # Created by Joseph C. Richardson, GitHub.com
 
@@ -54,7 +54,7 @@ from time import sleep as wait
 GPIO.setmode(GPIO.BOARD) # breadboard method
 GPIO.setwarnings(False) # disable setwarnings
 
-pin=19,21 # two Rasp Pi 4 pin values for buzzers
+pin=21,19 # two Rasp Pi 4 pin values for buzzers
 
 GPIO.setup(pin[0],GPIO.OUT) # buzzer 1
 GPIO.setup(pin[1],GPIO.OUT) # buzzer 2
@@ -81,11 +81,11 @@ SRCLK = 11
 msb=16_777_215,16_777_216 # most significant bits
 lsb=8_388_607,8_388_608 # least significant bits
 
-led_speed=1,.05,.5 # pause duration
+led_speed=.05,.5 # pause duration
 
 beep_on='''
-GPIO.output(pin[0],0)
-GPIO.output(pin[1],0)
+GPIO.output(pin[0],1)
+GPIO.output(pin[1],1)
 '''
 beep_off='''
 GPIO.output(pin[0],0)
@@ -108,7 +108,7 @@ for i in range(24):
     GPIO.output(SRCLK,0)
 
 def binary_bits_default():
-    
+
     try:
         for i in range(msb[0],lsb[0],-1):
             bin=f'{i:b}'
@@ -125,8 +125,8 @@ def binary_bits_default():
                 GPIO.output(RCLK,1)
                 GPIO.output(SRCLK,0)
             exec(beep_off)
-            wait(led_speed[2])
-            
+            wait(led_speed[1])
+
         for i in range(lsb[1],msb[1]):
             bin=f'{i:b}'
             print('\n',len(f'{msb[0]+i:b}'),
@@ -142,13 +142,13 @@ def binary_bits_default():
                 GPIO.output(RCLK,1)
                 GPIO.output(SRCLK,0)
             exec(beep_off)
-            wait(led_speed[2])
-            
+            wait(led_speed[1])
+
     except KeyboardInterrupt:
         exec(stop_program_message)
-        
+
 def binary_bits_inverse():
-    
+
     try:
         for i in range(msb[0],lsb[0],-1):
             bin=f'{i:b}'
@@ -165,8 +165,8 @@ def binary_bits_inverse():
                 GPIO.output(RCLK,1)
                 GPIO.output(SRCLK,0)
             exec(beep_off)
-            wait(led_speed[2])
-            
+            wait(led_speed[1])
+
         for i in range(lsb[1],msb[1]):
             bin=f'{i:b}'
             print('\n',len(f'{msb[0]+i:b}'),
@@ -182,13 +182,13 @@ def binary_bits_inverse():
                 GPIO.output(RCLK,1)
                 GPIO.output(SRCLK,0)
             exec(beep_off)
-            wait(led_speed[2])
-            
+            wait(led_speed[1])
+
     except KeyboardInterrupt:
         exec(stop_program_message)
-        
+
 def binary_bits_mirror():
-    
+
     try:
         for i in range(msb[0],lsb[0],-1):
             bin=f'{i:b}'
@@ -205,8 +205,8 @@ def binary_bits_mirror():
                 GPIO.output(RCLK,1)
                 GPIO.output(SRCLK,0)
             exec(beep_off)
-            wait(led_speed[2])
-            
+            wait(led_speed[1])
+
         for i in range(lsb[1],msb[1]):
             bin=f'{i:b}'
             print('\n',len(f'{msb[0]+i:b}'),
@@ -222,13 +222,13 @@ def binary_bits_mirror():
                 GPIO.output(RCLK,1)
                 GPIO.output(SRCLK,0)
             exec(beep_off)
-            wait(led_speed[2])
-            
+            wait(led_speed[1])
+
     except KeyboardInterrupt:
         exec(stop_program_message)
-        
+
 def binary_bits_mirror_inverse():
-    
+
     try:
         for i in range(msb[0],lsb[0],-1):
             bin=f'{i:b}'
@@ -245,8 +245,8 @@ def binary_bits_mirror_inverse():
                 GPIO.output(RCLK,1)
                 GPIO.output(SRCLK,0)
             exec(beep_off)
-            wait(led_speed[2])
-        
+            wait(led_speed[1])
+
         for i in range(lsb[1],msb[1]):
             bin=f'{i:b}'
             print('\n',len(f'{msb[0]+i:b}'),
@@ -262,13 +262,13 @@ def binary_bits_mirror_inverse():
                 GPIO.output(RCLK,1)
                 GPIO.output(SRCLK,0)
             exec(beep_off)
-            wait(led_speed[2])
-            
+            wait(led_speed[1])
+
     except KeyboardInterrupt:
         exec(stop_program_message)
 
 def binary_bits_flow_default():
-    
+
     try:
         for i in range(msb[0],lsb[0],-1):
             bin=f'{i:b}'
@@ -283,8 +283,8 @@ def binary_bits_flow_default():
                 GPIO.output(SRCLK,1)
                 GPIO.output(RCLK,1)
                 GPIO.output(SRCLK,0)
-                wait(led_speed[1])
-                
+                wait(led_speed[0])
+
         for i in range(lsb[1],msb[1]):
             bin=f'{i:b}'
             print('\n',len(f'{msb[0]+i:b}'),
@@ -298,13 +298,13 @@ def binary_bits_flow_default():
                 GPIO.output(SRCLK,1)
                 GPIO.output(RCLK,1)
                 GPIO.output(SRCLK,0)
-                wait(led_speed[1])
-    
+                wait(led_speed[0])
+
     except KeyboardInterrupt:
         exec(stop_program_message)
 
 def binary_bits_flow_default_inverse():
-    
+
     try:
         for i in range(msb[0],lsb[0],-1):
             bin=f'{i:b}'
@@ -319,8 +319,8 @@ def binary_bits_flow_default_inverse():
                 GPIO.output(SRCLK,1)
                 GPIO.output(RCLK,1)
                 GPIO.output(SRCLK,0)
-                wait(led_speed[1])
-                
+                wait(led_speed[0])
+
         for i in range(lsb[1],msb[1]):
             bin=f'{i:b}'
             print('\n',len(f'{msb[0]+i:b}'),
@@ -334,11 +334,11 @@ def binary_bits_flow_default_inverse():
                 GPIO.output(SRCLK,1)
                 GPIO.output(RCLK,1)
                 GPIO.output(SRCLK,0)
-                wait(led_speed[1])
-                
+                wait(led_speed[0])
+
     except KeyboardInterrupt:
         exec(stop_program_message)
-        
+
 binary_bits_trix=[
     binary_bits_default,
     binary_bits_inverse,
@@ -360,7 +360,7 @@ try:
     binary_bits_trix[0]()
 except IndexError:
     print('index value exceeds index range limit')
-    
+
 for i in range(24):
     GPIO.output(RCLK,0)
     GPIO.output(SER,0)
