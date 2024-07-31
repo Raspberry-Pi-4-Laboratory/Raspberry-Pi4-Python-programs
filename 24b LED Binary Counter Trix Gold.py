@@ -48,16 +48,16 @@
 
 # import functions:
 
-import RPi.GPIO as GPIO,random
+import RPi.GPIO as GPIO
 from time import sleep as wait
 
 GPIO.setmode(GPIO.BOARD) # breadboard method
 GPIO.setwarnings(False) # disable setwarnings
 
-pin=21,19 # two Rasp Pi 4 pin values for buzzers
+buzz_pin=21,19 # two Rasp Pi 4 pin values for buzzers
 
-GPIO.setup(pin[0],GPIO.OUT) # buzzer 1
-GPIO.setup(pin[1],GPIO.OUT) # buzzer 2
+GPIO.setup(buzz_pin[0],GPIO.OUT) # buzzer 1
+GPIO.setup(buzz_pin[1],GPIO.OUT) # buzzer 2
 
 # Create variables for the RCLK, data bit and the SRCLK.
 
@@ -84,12 +84,12 @@ lsb=8_388_607,8_388_608 # least significant bits
 led_speed=.05,.5 # pause duration
 
 beep_on='''
-GPIO.output(pin[0],1)
-GPIO.output(pin[1],1)
+GPIO.output(buzz_pin[0],1)
+GPIO.output(buzz_pin[1],1)
 '''
 beep_off='''
-GPIO.output(pin[0],0)
-GPIO.output(pin[1],0)
+GPIO.output(buzz_pin[0],0)
+GPIO.output(buzz_pin[1],0)
 '''
 stop_program_message='''
 print('Stop program Execution/run:')
