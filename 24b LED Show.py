@@ -10,14 +10,9 @@ GPIO.setup(port_pin[0],GPIO.IN)
 GPIO.setup(port_pin[1],GPIO.OUT)
 GPIO.setup(port_pin[2],GPIO.OUT)
 
-RGB_pins=12,32,16,36,18,38
-
 RCLK = 13
 SER = 15
 SRCLK = 11
-
-msb=16_777_215,16_777_216 # most significant bits
-lsb=8_388_607,8_388_608 # least significant bits
 
 led_speed=1,.05,.5,.1 # pause duration
 
