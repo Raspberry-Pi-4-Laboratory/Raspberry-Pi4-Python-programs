@@ -4,12 +4,6 @@ from time import sleep as wait
 GPIO.setmode(GPIO.BOARD) # breadboard method
 GPIO.setwarnings(False) # disable setwarnings
 
-port_pin=7,11,13
-
-GPIO.setup(port_pin[0],GPIO.IN)
-GPIO.setup(port_pin[1],GPIO.OUT)
-GPIO.setup(port_pin[2],GPIO.OUT)
-
 RCLK = 13
 SER = 15
 SRCLK = 11
