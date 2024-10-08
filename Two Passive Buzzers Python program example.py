@@ -50,8 +50,10 @@ passbuzz_pin=31,29
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
+
 GPIO.setup(passbuzz_pin[0],GPIO.OUT)
 GPIO.setup(passbuzz_pin[1],GPIO.OUT)
+
 passbuzz1=GPIO.PWM(passbuzz_pin[0],400)
 passbuzz2=GPIO.PWM(passbuzz_pin[1],400)
 
