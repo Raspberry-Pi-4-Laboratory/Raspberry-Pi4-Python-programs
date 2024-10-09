@@ -1,4 +1,4 @@
-# Two Passive Buzzers Python program example:
+# Two Passive Buzzers Python Threading program example:
 
 # Created by Joseph C. Richardson, GitHub.com
 
@@ -26,7 +26,7 @@
 
 # This Raspberry Pi 4 Python program allows
 # users to have tons of fun, while learning
-# how passive buzzers work.
+# how passive buzzers work with threading.
 
 # We will use the breadboard method:
 
