@@ -3631,15 +3631,15 @@ def LED_intro():
         
 def LED_show():
     
-        for i in led_show:
-            for j in range(24):
-                GPIO.output(SER,int(i[j]))
-                GPIO.output(SRCLK,1)
-                wait(led_speed[0])                
-                GPIO.output(SRCLK,0)
-            GPIO.output(RCLK,1)
-            GPIO.output(RCLK,0)
-            wait(led_speed[1])
+    for i in led_show:
+        for j in range(24):
+            GPIO.output(SER,int(i[j]))
+            GPIO.output(SRCLK,1)
+            wait(led_speed[0])                
+            GPIO.output(SRCLK,0)
+        GPIO.output(RCLK,1)
+        GPIO.output(RCLK,0)
+        wait(led_speed[1])
 
 def LED_show_reverse():    
     
