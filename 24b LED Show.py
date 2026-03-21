@@ -3676,9 +3676,9 @@ def LED_show_flow_random():
             GPIO.output(SRCLK,1)
             wait(led_speed[0])                
             GPIO.output(SRCLK,0)
-        GPIO.output(RCLK,1)
-        GPIO.output(RCLK,0)
-        wait(led_speed[1])
+            GPIO.output(RCLK,1)
+            GPIO.output(RCLK,0)
+            wait(led_speed[1])
             
 def LED_flicker_flasher1():
     
