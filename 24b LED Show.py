@@ -3728,8 +3728,7 @@ led_functions = (
     LED_flicker_flasher2,
     the_end)
 
-for i in led_functions:
-    i()
+for i in led_functions:i()
 
 for i in range(24):
     GPIO.output(SER,0)
