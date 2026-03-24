@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO,random
+from LED_Show_Strings_Only import*
 from time import sleep as wait
 
 GPIO.setmode(GPIO.BOARD) # breadboard method
