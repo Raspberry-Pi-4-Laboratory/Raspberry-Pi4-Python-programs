@@ -86,7 +86,7 @@ SRCLK = 11
 msb = 16_777_215,16_777_216 # most significant bits
 lsb = 8_388_607,8_388_608 # least significant bits
 
-led_speed = 0.0001,.08,1  # pause duration
+led_speed = 0.0000000000000000000000000000001,.08,1  # pause duration
 
 beep_on ='''
 GPIO.output(buzz_pin[0],1)
