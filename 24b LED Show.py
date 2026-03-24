@@ -66,7 +66,7 @@ def LED_show_reverse():
         
 def LED_show_random():
     
-    for i in range(30):
+    for i in range(100):
         for j in range(24):
             randvalue = random.randint(0,1)
             GPIO.output(SER,randvalue)
@@ -79,7 +79,7 @@ def LED_show_random():
         
 def LED_show_flow_random():
     
-    for i in range(3):
+    for i in range(5):
         for j in range(24):
             randvalue = random.randint(0,1)
             GPIO.output(SER,randvalue)
