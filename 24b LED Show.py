@@ -9,7 +9,7 @@ SER = 15
 RCLK = 13
 SRCLK = 11
 
-led_speed = 0.0001,.05,1  # pause duration
+led_speed = 0.0000000000000000000000000000001,.05,1  # pause duration
 
 stop_program_message='''
 print('Stop program Execution/run:')
