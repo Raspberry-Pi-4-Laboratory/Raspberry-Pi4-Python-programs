@@ -9,7 +9,7 @@ SER = 15
 RCLK = 13
 SRCLK = 11
 
-led_speed = 0.0000000000000000000000000000001,.05,1  # pause duration
+led_speed = 0.0000001,0.05,1  # pause duration
 
 stop_program_message='''
 print('Stop program Execution/run:')
@@ -23,19 +23,22 @@ for i in control_shift:GPIO.setup(i,GPIO.OUT) # setup desired GPIO pinouts
 for i in range(24):
     GPIO.output(SER,0)
     GPIO.output(SRCLK,1)
+    wait(led_speed[0])
     GPIO.output(SRCLK,0)
 GPIO.output(RCLK,1)
+wait(led_speed[0])
 GPIO.output(RCLK,0)
 
-def LED_intro():   
+def LED_intro():
     
     for i in led_intro:        
         for j in range(24):
             GPIO.output(SER,int(i[j]))
             GPIO.output(SRCLK,1)
-            wait(led_speed[0])                
+            wait(led_speed[0])
             GPIO.output(SRCLK,0)
         GPIO.output(RCLK,1)
+        wait(led_speed[0])
         GPIO.output(RCLK,0)
         wait(led_speed[2])
         
@@ -45,22 +48,24 @@ def LED_show():
         for j in range(24):
             GPIO.output(SER,int(i[j]))
             GPIO.output(SRCLK,1)
-            wait(led_speed[0])                
+            wait(led_speed[0])
             GPIO.output(SRCLK,0)
         GPIO.output(RCLK,1)
+        wait(led_speed[0])
         GPIO.output(RCLK,0)
         wait(led_speed[1])
 
-def LED_show_reverse():    
+def LED_show_reverse():
     
     led_show.reverse()       
     for i in led_show:
         for j in range(24):               
             GPIO.output(SER,int(i[j])-1)
             GPIO.output(SRCLK,1)
-            wait(led_speed[0])                
+            wait(led_speed[0])
             GPIO.output(SRCLK,0)
         GPIO.output(RCLK,1)
+        wait(led_speed[0])
         GPIO.output(RCLK,0)
         wait(led_speed[1])
         
@@ -71,9 +76,10 @@ def LED_show_random():
             randvalue = random.randint(0,1)
             GPIO.output(SER,randvalue)
             GPIO.output(SRCLK,1)
-            wait(led_speed[0])                
+            wait(led_speed[0])
             GPIO.output(SRCLK,0)
         GPIO.output(RCLK,1)
+        wait(led_speed[0])
         GPIO.output(RCLK,0)
         wait(led_speed[1])
         
@@ -84,9 +90,10 @@ def LED_show_flow_random():
             randvalue = random.randint(0,1)
             GPIO.output(SER,randvalue)
             GPIO.output(SRCLK,1)
-            wait(led_speed[0])                
+            wait(led_speed[0])
             GPIO.output(SRCLK,0)
             GPIO.output(RCLK,1)
+            wait(led_speed[0])
             GPIO.output(RCLK,0)
             wait(led_speed[1])
             
@@ -97,9 +104,10 @@ def LED_flicker_flasher1():
             for j in range(24):               
                 GPIO.output(SER,int(i[j]))
                 GPIO.output(SRCLK,1)
-                wait(led_speed[0])                
+                wait(led_speed[0])
                 GPIO.output(SRCLK,0)
             GPIO.output(RCLK,1)
+            wait(led_speed[0])
             GPIO.output(RCLK,0)
             wait(led_speed[1])
             
@@ -110,9 +118,10 @@ def LED_flicker_flasher2():
             for j in range(24):               
                 GPIO.output(SER,int(i[j]))
                 GPIO.output(SRCLK,1)
-                wait(led_speed[0])                
+                wait(led_speed[0])
                 GPIO.output(SRCLK,0)
             GPIO.output(RCLK,1)
+            wait(led_speed[0])
             GPIO.output(RCLK,0)
             wait(led_speed[1])
             
@@ -125,6 +134,7 @@ def the_end():
             wait(led_speed[0])
             GPIO.output(SRCLK,0)
         GPIO.output(RCLK,1)
+        wait(led_speed[0])
         GPIO.output(RCLK,0)
         wait(led_speed[2])
         
@@ -143,6 +153,10 @@ for i in led_functions:i()
 for i in range(24):
     GPIO.output(SER,0)
     GPIO.output(SRCLK,1)
+    wait(led_speed[0])
     GPIO.output(SRCLK,0)
 GPIO.output(RCLK,1)
+wait(led_speed[0])
 GPIO.output(RCLK,0)
+
+GPIO.cleanup()  # # GPI.cleanup() sets all GPIO pins to LOW/OFF state

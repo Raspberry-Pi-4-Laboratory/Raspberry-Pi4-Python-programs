@@ -86,7 +86,7 @@ SRCLK = 11
 msb = 16_777_215,16_777_216 # most significant bits
 lsb = 8_388_607,8_388_608 # least significant bits
 
-led_speed = 0.0000000000000000000000000000001,.08,1  # pause duration
+led_speed = 0.0000001,.08,1  # pause duration
 
 beep_on ='''
 GPIO.output(buzz_pin[0],1)
@@ -108,8 +108,10 @@ for i in control_shift:GPIO.setup(i,GPIO.OUT) # setup desired GPIO pinouts
 for i in range(24):
     GPIO.output(SER,0)
     GPIO.output(SRCLK,1)
+    wait(led_speed[0])
     GPIO.output(SRCLK,0)
 GPIO.output(RCLK,1)
+wait(led_speed[0])
 GPIO.output(RCLK,0)
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 def binary_bits_default():
@@ -117,8 +119,10 @@ def binary_bits_default():
     for i in range(24):
         GPIO.output(SER,0)
         GPIO.output(SRCLK,1)
+        wait(led_speed[0])
         GPIO.output(SRCLK,0)
     GPIO.output(RCLK,1)
+    wait(led_speed[0])
     GPIO.output(RCLK,0)
 
     try:
@@ -136,6 +140,7 @@ def binary_bits_default():
                 wait(led_speed[0])
                 GPIO.output(SRCLK,0)
             GPIO.output(RCLK,1)
+            wait(led_speed[0])
             GPIO.output(RCLK,0)
             exec(beep_off)
             wait(led_speed[2])
@@ -154,6 +159,7 @@ def binary_bits_default():
                 wait(led_speed[0])
                 GPIO.output(SRCLK,0)
             GPIO.output(RCLK,1)
+            wait(led_speed[0])
             GPIO.output(RCLK,0)
             exec(beep_off)
             wait(led_speed[2])
@@ -166,8 +172,10 @@ def binary_bits_inverse():
     for i in range(24):
         GPIO.output(SER,0)
         GPIO.output(SRCLK,1)
+        wait(led_speed[0])
         GPIO.output(SRCLK,0)
     GPIO.output(RCLK,1)
+    wait(led_speed[0])
     GPIO.output(RCLK,0)
 
     try:
@@ -185,6 +193,7 @@ def binary_bits_inverse():
                 wait(led_speed[0])
                 GPIO.output(SRCLK,0)
             GPIO.output(RCLK,1)
+            wait(led_speed[0])
             GPIO.output(RCLK,0)
             exec(beep_off)
             wait(led_speed[2])
@@ -203,6 +212,7 @@ def binary_bits_inverse():
                 wait(led_speed[0])
                 GPIO.output(SRCLK,0)
             GPIO.output(RCLK,1)
+            wait(led_speed[0])
             GPIO.output(RCLK,0)
             exec(beep_off)
             wait(led_speed[2])
@@ -215,8 +225,10 @@ def binary_bits_mirror():
     for i in range(24):
         GPIO.output(SER,0)
         GPIO.output(SRCLK,1)
+        wait(led_speed[0])
         GPIO.output(SRCLK,0)
     GPIO.output(RCLK,1)
+    wait(led_speed[0])
     GPIO.output(RCLK,0)
 
     try:
@@ -235,6 +247,7 @@ def binary_bits_mirror():
                 wait(led_speed[0])
                 GPIO.output(SRCLK,0)
             GPIO.output(RCLK,1)
+            wait(led_speed[0])
             GPIO.output(RCLK,0)
             exec(beep_off)
             wait(led_speed[2])
@@ -254,6 +267,7 @@ def binary_bits_mirror():
                 wait(led_speed[0])
                 GPIO.output(SRCLK,0)
             GPIO.output(RCLK,1)
+            wait(led_speed[0])
             GPIO.output(RCLK,0)
             exec(beep_off)
             wait(led_speed[2])
@@ -266,8 +280,10 @@ def binary_bits_mirror_inverse():
     for i in range(24):
         GPIO.output(SER,0)
         GPIO.output(SRCLK,1)
+        wait(led_speed[0])
         GPIO.output(SRCLK,0)
     GPIO.output(RCLK,1)
+    wait(led_speed[0])
     GPIO.output(RCLK,0)
 
     try:
@@ -286,6 +302,7 @@ def binary_bits_mirror_inverse():
                 wait(led_speed[0])
                 GPIO.output(SRCLK,0)
             GPIO.output(RCLK,1)
+            wait(led_speed[0])
             GPIO.output(RCLK,0)
             exec(beep_off)
             wait(led_speed[2])
@@ -305,6 +322,7 @@ def binary_bits_mirror_inverse():
                 wait(led_speed[0])
                 GPIO.output(SRCLK,0)
             GPIO.output(RCLK,1)
+            wait(led_speed[0])
             GPIO.output(RCLK,0)
             exec(beep_off)
             wait(led_speed[2])
@@ -317,8 +335,10 @@ def binary_bits_flow_default():
     for i in range(24):
         GPIO.output(SER,0)
         GPIO.output(SRCLK,1)
+        wait(led_speed[0])
         GPIO.output(SRCLK,0)
     GPIO.output(RCLK,1)
+    wait(led_speed[0])
     GPIO.output(RCLK,0)
 
     try:
@@ -335,6 +355,7 @@ def binary_bits_flow_default():
                 wait(led_speed[0])
                 GPIO.output(SRCLK,0)
                 GPIO.output(RCLK,1)
+                wait(led_speed[0])
                 GPIO.output(RCLK,0)
                 wait(led_speed[1])
 
@@ -351,6 +372,7 @@ def binary_bits_flow_default():
                 wait(led_speed[0])
                 GPIO.output(SRCLK,0)
                 GPIO.output(RCLK,1)
+                wait(led_speed[0])
                 GPIO.output(RCLK,0)
                 wait(led_speed[1])
 
@@ -362,8 +384,10 @@ def binary_bits_flow_default_inverse():
     for i in range(24):
         GPIO.output(SER,0)
         GPIO.output(SRCLK,1)
+        wait(led_speed[0])
         GPIO.output(SRCLK,0)
     GPIO.output(RCLK,1)
+    wait(led_speed[0])
     GPIO.output(RCLK,0)
 
     try:
@@ -380,6 +404,7 @@ def binary_bits_flow_default_inverse():
                 wait(led_speed[0])
                 GPIO.output(SRCLK,0)
                 GPIO.output(RCLK,1)
+                wait(led_speed[0])
                 GPIO.output(RCLK,0)
                 wait(led_speed[1])
 
@@ -396,6 +421,7 @@ def binary_bits_flow_default_inverse():
                 wait(led_speed[0])
                 GPIO.output(SRCLK,0)
                 GPIO.output(RCLK,1)
+                wait(led_speed[0])
                 GPIO.output(RCLK,0)
                 wait(led_speed[1])
 
@@ -420,15 +446,17 @@ binary_bits_trix = [
 # the index range.
 
 try:
-    binary_bits_trix[4]()
+    binary_bits_trix[0]()
 except IndexError:
     print('index value exceeds index range limit')
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 for i in range(24):
     GPIO.output(SER,0)
     GPIO.output(SRCLK,1)
+    wait(led_speed[0])
     GPIO.output(SRCLK,0)
 GPIO.output(RCLK,1)
+wait(led_speed[0])
 GPIO.output(RCLK,0)
 
 GPIO.cleanup() # GPI.cleanup() sets all GPIO pins to LOW/OFF state
