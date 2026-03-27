@@ -59,7 +59,7 @@ from time import sleep as wait
 GPIO.setmode(GPIO.BOARD)  # breadboard method
 GPIO.setwarnings(False)  # disable setwarnings
 
-buzz_pin = 21,19  # two Rasp Pi 4 pin values for buzzers
+buzz_pin = 29,31  # two Rasp Pi 4 pin values for buzzers
 
 GPIO.setup(buzz_pin[0],GPIO.OUT)  # buzzer 1
 GPIO.setup(buzz_pin[1],GPIO.OUT)  # buzzer 2
