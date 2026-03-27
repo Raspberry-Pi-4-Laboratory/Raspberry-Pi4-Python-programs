@@ -83,18 +83,18 @@ SER = 15
 RCLK = 13
 SRCLK = 11
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-msb = 16_777_215,16_777_216 # most significant bits
-lsb = 8_388_607,8_388_608 # least significant bits
+msb = 16_777_215,16_777_216  # most significant bits
+lsb = 8_388_607,8_388_608  # least significant bits
 
 led_speed = 0.0000001,.08,1  # pause duration
 
 beep_on ='''
-GPIO.output(buzz_pin[0],1)
-GPIO.output(buzz_pin[1],1)
-'''
-beep_off ='''
 GPIO.output(buzz_pin[0],0)
 GPIO.output(buzz_pin[1],0)
+'''
+beep_off ='''
+GPIO.output(buzz_pin[0],1)
+GPIO.output(buzz_pin[1],1)
 '''
 stop_program_message ='''
 print('Stop program Execution/run:')
@@ -103,7 +103,7 @@ to LOW state.')
 '''
 control_shift = SER,RCLK,SRCLK
 
-for i in control_shift:GPIO.setup(i,GPIO.OUT) # setup desired GPIO pinouts
+for i in control_shift:GPIO.setup(i,GPIO.OUT)  # setup desired GPIO pinouts
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 for i in range(24):
     GPIO.output(SER,0)
