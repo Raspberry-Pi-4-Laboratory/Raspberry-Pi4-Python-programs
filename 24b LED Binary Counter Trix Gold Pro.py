@@ -82,6 +82,10 @@ GPIO.setup(buzz_pin[1],GPIO.OUT)  # buzzer 2
 SER = 15
 RCLK = 13
 SRCLK = 11
+
+control_shift = SER,RCLK,SRCLK
+
+for i in control_shift:GPIO.setup(i,GPIO.OUT)  # setup desired GPIO pinouts
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 msb = 16_777_215,16_777_216  # most significant bits
 lsb = 8_388_607,8_388_608  # least significant bits
@@ -101,9 +105,6 @@ print('Stop program Execution/run:')
 print('cleanup/release all GPIO pinouts \
 to LOW state.')
 '''
-control_shift = SER,RCLK,SRCLK
-
-for i in control_shift:GPIO.setup(i,GPIO.OUT)  # setup desired GPIO pinouts
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 for i in range(24):
     GPIO.output(SER,0)
