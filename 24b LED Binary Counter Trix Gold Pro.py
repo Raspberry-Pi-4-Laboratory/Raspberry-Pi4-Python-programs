@@ -20,8 +20,7 @@
 # or if you like:
 # 10kΩ ohm pull-down resisters for NPN transistors = 2
 # logic power = on, 1
-# LED bar graph = 1
-# LEDs = 14
+# LED (Light-Emitting Diode)  = 24
 # 220Ω ohm resistor = 24
 # jumper wire = 36 or more +2 for the Rasp pi 4 fan
 
@@ -64,7 +63,7 @@ buzz_pin = 29,31  # two Rasp Pi 4 pin values for buzzers
 GPIO.setup(buzz_pin[0],GPIO.OUT)  # buzzer 1
 GPIO.setup(buzz_pin[1],GPIO.OUT)  # buzzer 2
 
-# Create variables for the RCLK, data bit and the SRCLK.
+# Create variables for the SER, SRCLK and the RCLK.
 
 # You can rename all these variables to any names you wish,
 # but keep in mind that you must also rename any variables
@@ -74,16 +73,22 @@ GPIO.setup(buzz_pin[1],GPIO.OUT)  # buzzer 2
 # to meaningful names, so other programmers can learn and
 # understand what's happening throughout the program's
 # execution/run.
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-# Note: Python executes its programs from the top, downward.
-# You must place these variables in this correct order as shown.
-# These pinout values won't execute right if you don't.
 
 SER = 15
-RCLK = 13
 SRCLK = 11
+RCLK = 13
 
-control_shift = SER,RCLK,SRCLK
+# SER (Serial Data Input)
+# SRCLK (Shift Register Clock)
+# RCLK (Register Clock/Latch)
+
+# Change the SER to a 1 for on and a 0 for off.
+
+# SER lets the data come in.
+# SRCLK seats the data
+# RCLK opens the latch to release the data
+
+control_shift = SER,SRCLK,RCLK
 
 for i in control_shift:GPIO.setup(i,GPIO.OUT)  # setup desired GPIO pinouts
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -92,15 +97,15 @@ lsb = 8_388_607,8_388_608  # least significant bits
 
 led_speed = 0.0000006,.08,1  # pause duration
 
-beep_on ='''
+beep_on = '''
 GPIO.output(buzz_pin[0],0)
 GPIO.output(buzz_pin[1],0)
 '''
-beep_off ='''
+beep_off = '''
 GPIO.output(buzz_pin[0],1)
 GPIO.output(buzz_pin[1],1)
 '''
-stop_program_message ='''
+stop_program_message = '''
 print('Stop program Execution/run:')
 print('cleanup/release all GPIO pinouts \
 to LOW state.')
@@ -128,7 +133,7 @@ def binary_bits_default():
 
     try:
         for i in range(msb[0],lsb[0],-1):
-            bin=f'{i:b}'
+            bin = f'{i:b}'
             print('\n'+str(len(f'{msb[0]-i:b}')),
                   f'bits = Bin: {msb[0]-i:024b} =\n\n'
                   f'Hex: {msb[0]-i:X}\n'
