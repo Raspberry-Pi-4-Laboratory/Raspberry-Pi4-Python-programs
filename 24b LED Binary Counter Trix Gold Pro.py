@@ -52,7 +52,7 @@
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 # import functions:
 
-import RPi.GPIO as GPIO,datetime
+import RPi.GPIO as GPIO
 from time import sleep as wait
 
 GPIO.setmode(GPIO.BOARD)  # breadboard method
