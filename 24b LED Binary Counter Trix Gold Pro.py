@@ -1,4 +1,4 @@
-# 24b LED Binary Counter Trix Gold Python program example:
+# 24b LED Binary Counter Trix Gold Pro Python program example:
 
 # Created by Joseph C. Richardson, GitHub.com
 
@@ -138,7 +138,7 @@ def binary_bits_default():
                   f'bits = Bin: {msb[0]-i:024b} =\n\n'
                   f'Hex: {msb[0]-i:X}\n'
                   f'Oct: {msb[0]-i:o}\n'
-                  f'Dec: {msb[0]-i:d}')
+                  f'Dec: {msb[0]-i:,}')
             for j in range(24):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j])-1)
@@ -157,7 +157,7 @@ def binary_bits_default():
                   f'bits = Bin: {i:024b} =\n\n'
                   f'Hex: {i:X}\n'
                   f'Oct: {i:o}\n'
-                  f'Dec: {i:d}')
+                  f'Dec: {i:,}')
             for j in range(24):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j]))
@@ -191,7 +191,7 @@ def binary_bits_inverse():
                   f'bits = Bin: {(i & 0xffffff):024b} =\n\n'
                   f'Hex: -{msb[0]-i:X}\n'
                   f'Oct: -{msb[0]-i:o}\n'
-                  f'Dec: -{msb[0]-i:d}')
+                  f'Dec: -{msb[0]-i:,}')
             for j in range(24):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j]))
@@ -210,7 +210,7 @@ def binary_bits_inverse():
                   f'bits = Bin: {(i & 0xffffff):024b} =\n\n'
                   f'Hex: -{i:X}\n'
                   f'Oct: -{i:o}\n'
-                  f'Dec: -{i:d}')
+                  f'Dec: -{i:,}')
             for j in range(24):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j])-1)
@@ -245,7 +245,7 @@ def binary_bits_mirror():
                   f'bits = Bin: {rev} =\n\n'
                   f'Hex: {msb[0]-i:X}\n'
                   f'Oct: {msb[0]-i:o}\n'
-                  f'Dec: {msb[0]-i:d}')
+                  f'Dec: {msb[0]-i:,}')
             for j in range(23,-1,-1):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j])-1)
@@ -265,7 +265,7 @@ def binary_bits_mirror():
                   f'bits = Bin: {rev} =\n\n'
                   f'Hex: {i:X}\n'
                   f'Oct: {i:o}\n'
-                  f'Dec: {i:d}')
+                  f'Dec: {i:,}')
             for j in range(23,-1,-1):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j]))
@@ -300,7 +300,7 @@ def binary_bits_mirror_inverse():
                   f'bits = Bin: {rev} =\n\n'
                   f'Hex: -{msb[0]-i:X}\n'
                   f'Oct: -{msb[0]-i:o}\n'
-                  f'Dec: -{msb[0]-i:d}')
+                  f'Dec: -{msb[0]-i:,}')
             for j in range(23,-1,-1):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j]))
@@ -320,7 +320,7 @@ def binary_bits_mirror_inverse():
                   f'bits = Bin: {rev} =\n\n'
                   f'Hex: -{i:X}\n'
                   f'Oct: -{i:o}\n'
-                  f'Dec: -{i:d}')
+                  f'Dec: -{i:,}')
             for j in range(23,-1,-1):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j])-1)
@@ -354,7 +354,7 @@ def binary_bits_flow_default():
                   f'bits = Bin: {msb[0]-i:024b} =\n\n'
                   f'Hex: {msb[0]-i:X}\n'
                   f'Oct: {msb[0]-i:o}\n'
-                  f'Dec: {msb[0]-i:d}')
+                  f'Dec: {msb[0]-i:,}')
             for j in range(24):
                 GPIO.output(SER,int(bin[j])-1)
                 GPIO.output(SRCLK,1)
@@ -371,7 +371,7 @@ def binary_bits_flow_default():
                   f'bits = Bin: {i:024b} =\n\n'
                   f'Hex: {i:X}\n'
                   f'Oct: {i:o}\n'
-                  f'Dec: {i:d}')
+                  f'Dec: {i:,}')
             for j in range(24):
                 GPIO.output(SER,int(bin[j]))
                 GPIO.output(SRCLK,1)
@@ -403,7 +403,7 @@ def binary_bits_flow_default_inverse():
                   f'bits = Bin: {(i & 0xffffff):024b} =\n\n'
                   f'Hex: -{msb[0]-i:X}\n'
                   f'Oct: -{msb[0]-i:o}\n'
-                  f'Dec: -{msb[0]-i:d}')
+                  f'Dec: -{msb[0]-i:,}')
             for j in range(24):
                 GPIO.output(SER,int(bin[j]))
                 GPIO.output(SRCLK,1)
@@ -420,7 +420,7 @@ def binary_bits_flow_default_inverse():
                   f'bits = Bin: {(i & 0xffffff):024b} =\n\n'
                   f'Hex: -{i:X}\n'
                   f'Oct: -{i:o}\n'
-                  f'Dec: -{i:d}')
+                  f'Dec: -{i:,}')
             for j in range(24):
                 GPIO.output(SER,int(bin[j])-1)
                 GPIO.output(SRCLK,1)
