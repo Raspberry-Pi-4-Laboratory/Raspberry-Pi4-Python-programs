@@ -14,15 +14,17 @@
 # Raspberry Pi 4 = 1
 # breadboard = 1 or more depending
 # 74HC595 shift register = 3
-# 3V active buzzer = 2
-# 1kΩ ohm pull-up resisters for PNP transistors = 2
+# 3V active buzzer = 1
+# PNP transistor = 1
+# 1kΩ ohm pull-up resister for PNP transistor = 1
 # logic power = on, 0
 # or if you like:
-# 10kΩ ohm pull-down resisters for NPN transistors = 2
+# NPN transistor = 1
+# 10kΩ ohm pull-down resister for NPN transistor = 1
 # logic power = on, 1
 # LED (Light-Emitting Diode)  = 24
 # 220Ω ohm resistor = 24
-# jumper wire = 36 or more +2 for the Rasp pi 4 fan
+# jumper wire = aprox 40 or more +2 for the Rasp pi 4 fan
 
 # Note: use two other jumper wires for
 # the Raspberry Pi 4 fan, while in use/
