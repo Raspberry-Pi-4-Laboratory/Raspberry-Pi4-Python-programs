@@ -22,9 +22,9 @@
 # NPN transistor = 1
 # 10kΩ ohm pull-down resister for NPN transistor = 1
 # logic power = on, 1
-# LED (Light-Emitting Diode)  = 24
+# LED (Light-Emitting Diode) = 24
 # 220Ω ohm resistor = 24
-# jumper wire = aprox. 40 or more +2 for the Rasp pi 4 fan
+# jumper wire = approx 40 or more +2 for the Rasp pi 4 fan
 
 # Note: use two other jumper wires for
 # the Raspberry Pi 4 fan, while in use/
@@ -60,10 +60,9 @@ from time import sleep as wait
 GPIO.setmode(GPIO.BOARD)  # breadboard method
 GPIO.setwarnings(False)  # disable setwarnings
 
-buzz_pin = 29,31  # two Rasp Pi 4 pin values for buzzers
+active_buzz_pin = 29  # one Rasp Pi 4 pin value for the active buzzer
 
-GPIO.setup(buzz_pin[0],GPIO.OUT)  # buzzer 1
-GPIO.setup(buzz_pin[1],GPIO.OUT)  # buzzer 2
+GPIO.setup(active_buzz_pin,GPIO.OUT)  # active buzzer
 
 # Create variables for the SER, SRCLK and the RCLK.
 
@@ -100,12 +99,10 @@ lsb = 8_388_607,8_388_608  # least significant bits
 led_speed = 0.0000006,.08,1  # pause duration
 
 beep_on = '''
-GPIO.output(buzz_pin[0],0)
-GPIO.output(buzz_pin[1],0)
+GPIO.output(active_buzz_pin,0)
 '''
 beep_off = '''
-GPIO.output(buzz_pin[0],1)
-GPIO.output(buzz_pin[1],1)
+GPIO.output(active_buzz_pin,1)
 '''
 stop_program_message = '''
 print('Stop program Execution/run:')
@@ -121,7 +118,7 @@ for i in range(24):
 GPIO.output(RCLK,1)
 wait(led_speed[0])
 GPIO.output(RCLK,0)
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 def binary_bits_default():
 
     for i in range(24):
@@ -174,7 +171,7 @@ def binary_bits_default():
 
     except KeyboardInterrupt:
         exec(stop_program_message)
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 def binary_bits_inverse():
 
     for i in range(24):
@@ -227,7 +224,7 @@ def binary_bits_inverse():
 
     except KeyboardInterrupt:
         exec(stop_program_message)
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 def binary_bits_mirror():
 
     for i in range(24):
@@ -282,7 +279,7 @@ def binary_bits_mirror():
 
     except KeyboardInterrupt:
         exec(stop_program_message)
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 def binary_bits_mirror_inverse():
 
     for i in range(24):
@@ -337,7 +334,7 @@ def binary_bits_mirror_inverse():
 
     except KeyboardInterrupt:
         exec(stop_program_message)
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 def binary_bits_flow_default():
 
     for i in range(24):
@@ -386,7 +383,7 @@ def binary_bits_flow_default():
 
     except KeyboardInterrupt:
         exec(stop_program_message)
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 def binary_bits_flow_default_inverse():
 
     for i in range(24):
@@ -435,7 +432,7 @@ def binary_bits_flow_default_inverse():
 
     except KeyboardInterrupt:
         exec(stop_program_message)
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 binary_bits_trix = [
     binary_bits_default,
     binary_bits_inverse,
@@ -457,7 +454,7 @@ try:
     binary_bits_trix[0]()
 except IndexError:
     print('index value exceeds index range limit')
-''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 for i in range(24):
     GPIO.output(SER,0)
     GPIO.output(SRCLK,1)
