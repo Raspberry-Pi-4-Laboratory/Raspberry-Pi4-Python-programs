@@ -24,7 +24,7 @@
 # logic power = on, 1
 # LED (Light-Emitting Diode)  = 24
 # 220Ω ohm resistor = 24
-# jumper wire = aprox 40 or more +2 for the Rasp pi 4 fan
+# jumper wire = aprox. 40 or more +2 for the Rasp pi 4 fan
 
 # Note: use two other jumper wires for
 # the Raspberry Pi 4 fan, while in use/
