@@ -1,4 +1,4 @@
-# JCR-U2T6ML (Universal 2 Timer 0.0000006 Microsecond Latch)
+# JCR-U2T6NL (Universal 2 Timer 0.0000006 Nanosecond  Latch)
 
 # 74HC595 Shift Register Layout, complete with timings between the SRCLK and the RCLK latch.
 
