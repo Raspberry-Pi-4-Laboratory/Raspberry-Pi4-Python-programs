@@ -314,7 +314,7 @@ def binary_bits_mirror_inverse():
 
         for i in range(lsb[1],msb[1]):
             bin = f'{i:b}'
-            rev = '{(i & 0xffffff):024b}'[::-1]
+            rev = f'{(i & 0xffffff):024b}'[::-1]
             print('\n'+str(len(f'{msb[0]:b}')),
                   f'bits = Bin: {rev} =\n\n'
                   f'Hex: -{i:X}\n'
