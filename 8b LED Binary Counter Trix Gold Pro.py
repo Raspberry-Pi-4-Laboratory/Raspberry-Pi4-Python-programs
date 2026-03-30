@@ -30,7 +30,7 @@
 # the Raspberry Pi 4 fan, while in use/
 # operation.
 
-# 24b LED Binary Counter Trix Python program example:
+# 8b LED Binary Counter Trix Python program example:
 
 # This Raspberry Pi 4 Python program allows
 # users to have tons of fun, while learning
