@@ -1,0 +1,467 @@
+# 8b LED Binary Counter Trix Gold Pro Python program example:
+
+# Created by Joseph C. Richardson, GitHub.com
+
+# Note: be mindful while working with
+# electronics. There are mistakes that
+# cannot be corrected should you ignore
+# any basic electronics rules. Electronics
+# demands basic math skills and knowledge
+# of electronics components alike.
+
+# Items needed are as follows:
+
+# Raspberry Pi 4 = 1
+# breadboard = 1 or more depending
+# 74HC595 shift register = 1
+# 3V active buzzer = 1
+# PNP transistor = 1
+# 1kΩ ohm pull-up resister for PNP transistor = 1
+# logic power = on, 0
+# or if you like:
+# NPN transistor = 1
+# 10kΩ ohm pull-down resister for NPN transistor = 1
+# logic power = on, 1
+# LED (Light-Emitting Diode) = 8
+# 220Ω ohm resistor = 8
+# jumper wire = approx. 24 or more +2 for the Rasp pi 4 fan
+
+# Note: use two other jumper wires for
+# the Raspberry Pi 4 fan, while in use/
+# operation.
+
+# 24b LED Binary Counter Trix Python program example:
+
+# This Raspberry Pi 4 Python program allows
+# users to have tons of fun, while learning
+# how three 8b 74HC595 shift registers work.
+
+# We will use the breadboard method:
+
+# GPIO.setmode(GPIO.BOARD)
+
+# This method is for the GPIO pinouts
+# not the GPIO numbers, such as BCM
+
+# You can also use the Broadcom SOC
+# Channel method if you prefer:
+
+# GPIO.setmode(GPIO.BCM)
+# This allows GPIO numbers, not GPIO
+# pinouts, such as the breadboard
+# method illustrates in our Python
+# program example.
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+# import functions:
+
+import RPi.GPIO as GPIO
+from time import sleep as wait
+
+GPIO.setmode(GPIO.BOARD)  # breadboard method
+GPIO.setwarnings(False)  # disable setwarnings
+
+active_buzz_pin = 29  # one Rasp Pi 4 pin value for the active buzzer
+
+GPIO.setup(active_buzz_pin,GPIO.OUT)  # active buzzer
+
+# Create variables for the SER, SRCLK and the RCLK.
+
+# You can rename all these variables to any names you wish,
+# but keep in mind that you must also rename any variables
+# in your program as well. Click the Find and Replace command
+# on the IDLE menu to make any renaming changes faster to cover
+# any variables you want to rename. However, you should stick
+# to meaningful names, so other programmers can learn and
+# understand what's happening throughout the program's
+# execution/run.
+
+SER = 15
+SRCLK = 11
+RCLK = 13
+
+# SER (Serial Data Input)
+# SRCLK (Shift Register Clock)
+# RCLK (Register Clock/Latch)
+
+# Change the SER to a 1 for on and a 0 for off.
+
+# SER lets the data come in.
+# SRCLK seats the data
+# RCLK opens the latch to release the data
+
+control_shift = SER,SRCLK,RCLK
+
+for i in control_shift:GPIO.setup(i,GPIO.OUT)  # setup desired GPIO pinouts
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+msb = 255,256  # most significant bits
+lsb = 127,128  # least significant bits
+
+led_speed = 0.0000006,.08,1  # pause duration
+
+beep_on = '''
+GPIO.output(active_buzz_pin,0)
+'''
+beep_off = '''
+GPIO.output(active_buzz_pin,1)
+'''
+stop_program_message = '''
+print('Stop program Execution/run:')
+print('cleanup/release all GPIO pinouts \
+to LOW state.')
+'''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+for i in range(8):
+    GPIO.output(SER,0)
+    GPIO.output(SRCLK,1)
+    wait(led_speed[0])
+    GPIO.output(SRCLK,0)
+GPIO.output(RCLK,1)
+wait(led_speed[0])
+GPIO.output(RCLK,0)
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+def binary_bits_default():
+
+    for i in range(8):
+        GPIO.output(SER,0)
+        GPIO.output(SRCLK,1)
+        wait(led_speed[0])
+        GPIO.output(SRCLK,0)
+    GPIO.output(RCLK,1)
+    wait(led_speed[0])
+    GPIO.output(RCLK,0)
+
+    try:
+        for i in range(msb[0],lsb[0],-1):
+            bin = f'{i:b}'
+            print('\n'+str(len(f'{msb[0]-i:b}')),
+                  f'bits = Bin: {msb[0]-i:08b} =\n\n'
+                  f'Hex: {msb[0]-i:X}\n'
+                  f'Oct: {msb[0]-i:o}\n'
+                  f'Dec: {msb[0]-i}')
+            for j in range(8):
+                exec(beep_on)
+                GPIO.output(SER,int(bin[j])-1)
+                GPIO.output(SRCLK,1)
+                wait(led_speed[0])
+                GPIO.output(SRCLK,0)
+            GPIO.output(RCLK,1)
+            wait(led_speed[0])
+            GPIO.output(RCLK,0)
+            exec(beep_off)
+            wait(led_speed[2])
+
+        for i in range(lsb[1],msb[1]):
+            bin = f'{i:b}'
+            print('\n'+str(len(f'{msb[0]:b}')),
+                  f'bits = Bin: {i:08b} =\n\n'
+                  f'Hex: {i:X}\n'
+                  f'Oct: {i:o}\n'
+                  f'Dec: {i}')
+            for j in range(8):
+                exec(beep_on)
+                GPIO.output(SER,int(bin[j]))
+                GPIO.output(SRCLK,1)
+                wait(led_speed[0])
+                GPIO.output(SRCLK,0)
+            GPIO.output(RCLK,1)
+            wait(led_speed[0])
+            GPIO.output(RCLK,0)
+            exec(beep_off)
+            wait(led_speed[2])
+
+    except KeyboardInterrupt:
+        exec(stop_program_message)
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+def binary_bits_inverse():
+
+    for i in range(8):
+        GPIO.output(SER,0)
+        GPIO.output(SRCLK,1)
+        wait(led_speed[0])
+        GPIO.output(SRCLK,0)
+    GPIO.output(RCLK,1)
+    wait(led_speed[0])
+    GPIO.output(RCLK,0)
+
+    try:
+        for i in range(msb[0],lsb[0],-1):
+            bin = f'{i:b}'
+            print('\n'+str(len(f'{msb[0]-i:b}')),
+                  f'bits = Bin: {(i & 0xff):08b} =\n\n'
+                  f'Hex: -{msb[0]-i:X}\n'
+                  f'Oct: -{msb[0]-i:o}\n'
+                  f'Dec: -{msb[0]-i}')
+            for j in range(8):
+                exec(beep_on)
+                GPIO.output(SER,int(bin[j]))
+                GPIO.output(SRCLK,1)
+                wait(led_speed[0])
+                GPIO.output(SRCLK,0)
+            GPIO.output(RCLK,1)
+            wait(led_speed[0])
+            GPIO.output(RCLK,0)
+            exec(beep_off)
+            wait(led_speed[2])
+
+        for i in range(lsb[1],msb[1]):
+            bin = f'{i:b}'
+            print('\n'+str(len(f'{msb[0]:b}')),
+                  f'bits = Bin: {(i & 0xff):08b} =\n\n'
+                  f'Hex: -{i:X}\n'
+                  f'Oct: -{i:o}\n'
+                  f'Dec: -{i}')
+            for j in range(8):
+                exec(beep_on)
+                GPIO.output(SER,int(bin[j])-1)
+                GPIO.output(SRCLK,1)
+                wait(led_speed[0])
+                GPIO.output(SRCLK,0)
+            GPIO.output(RCLK,1)
+            wait(led_speed[0])
+            GPIO.output(RCLK,0)
+            exec(beep_off)
+            wait(led_speed[2])
+
+    except KeyboardInterrupt:
+        exec(stop_program_message)
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+def binary_bits_mirror():
+
+    for i in range(8):
+        GPIO.output(SER,0)
+        GPIO.output(SRCLK,1)
+        wait(led_speed[0])
+        GPIO.output(SRCLK,0)
+    GPIO.output(RCLK,1)
+    wait(led_speed[0])
+    GPIO.output(RCLK,0)
+
+    try:
+        for i in range(msb[0],lsb[0],-1):
+            bin = f'{i:b}'
+            rev = f'{msb[0]-i:08b}'[::-1]
+            print('\n'+str(len(f'{msb[0]-i:b}')),
+                  f'bits = Bin: {rev} =\n\n'
+                  f'Hex: {msb[0]-i:X}\n'
+                  f'Oct: {msb[0]-i:o}\n'
+                  f'Dec: {msb[0]-i}')
+            for j in range(7,-1,-1):
+                exec(beep_on)
+                GPIO.output(SER,int(bin[j])-1)
+                GPIO.output(SRCLK,1)
+                wait(led_speed[0])
+                GPIO.output(SRCLK,0)
+            GPIO.output(RCLK,1)
+            wait(led_speed[0])
+            GPIO.output(RCLK,0)
+            exec(beep_off)
+            wait(led_speed[2])
+
+        for i in range(lsb[1],msb[1]):
+            bin = f'{i:b}'
+            rev = f'{i:08b}'[::-1]
+            print('\n'+str(len(f'{msb[0]:b}')),
+                  f'bits = Bin: {rev} =\n\n'
+                  f'Hex: {i:X}\n'
+                  f'Oct: {i:o}\n'
+                  f'Dec: {i}')
+            for j in range(7,-1,-1):
+                exec(beep_on)
+                GPIO.output(SER,int(bin[j]))
+                GPIO.output(SRCLK,1)
+                wait(led_speed[0])
+                GPIO.output(SRCLK,0)
+            GPIO.output(RCLK,1)
+            wait(led_speed[0])
+            GPIO.output(RCLK,0)
+            exec(beep_off)
+            wait(led_speed[2])
+
+    except KeyboardInterrupt:
+        exec(stop_program_message)
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+def binary_bits_mirror_inverse():
+
+    for i in range(8):
+        GPIO.output(SER,0)
+        GPIO.output(SRCLK,1)
+        wait(led_speed[0])
+        GPIO.output(SRCLK,0)
+    GPIO.output(RCLK,1)
+    wait(led_speed[0])
+    GPIO.output(RCLK,0)
+
+    try:
+        for i in range(msb[0],lsb[0],-1):
+            bin = f'{i:b}'
+            rev = f'{(i & 0xff):08b}'[::-1]
+            print('\n'+str(len(f'{msb[0]-i:b}')),
+                  f'bits = Bin: {rev} =\n\n'
+                  f'Hex: -{msb[0]-i:X}\n'
+                  f'Oct: -{msb[0]-i:o}\n'
+                  f'Dec: -{msb[0]-i}')
+            for j in range(7,-1,-1):
+                exec(beep_on)
+                GPIO.output(SER,int(bin[j]))
+                GPIO.output(SRCLK,1)
+                wait(led_speed[0])
+                GPIO.output(SRCLK,0)
+            GPIO.output(RCLK,1)
+            wait(led_speed[0])
+            GPIO.output(RCLK,0)
+            exec(beep_off)
+            wait(led_speed[2])
+
+        for i in range(lsb[1],msb[1]):
+            bin = f'{i:b}'
+            rev = '{(i & 0xff):08b}'[::-1]
+            print('\n'+str(len(f'{msb[0]:b}')),
+                  f'bits = Bin: {rev} =\n\n'
+                  f'Hex: -{i:X}\n'
+                  f'Oct: -{i:o}\n'
+                  f'Dec: -{i}')
+            for j in range(7,-1,-1):
+                exec(beep_on)
+                GPIO.output(SER,int(bin[j])-1)
+                GPIO.output(SRCLK,1)
+                wait(led_speed[0])
+                GPIO.output(SRCLK,0)
+            GPIO.output(RCLK,1)
+            wait(led_speed[0])
+            GPIO.output(RCLK,0)
+            exec(beep_off)
+            wait(led_speed[2])
+
+    except KeyboardInterrupt:
+        exec(stop_program_message)
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+def binary_bits_flow_default():
+
+    for i in range(8):
+        GPIO.output(SER,0)
+        GPIO.output(SRCLK,1)
+        wait(led_speed[0])
+        GPIO.output(SRCLK,0)
+    GPIO.output(RCLK,1)
+    wait(led_speed[0])
+    GPIO.output(RCLK,0)
+
+    try:
+        for i in range(msb[0],lsb[0],-1):
+            bin = f'{i:b}'
+            print('\n'+str(len(f'{msb[0]-i:b}')),
+                  f'bits = Bin: {msb[0]-i:08b} =\n\n'
+                  f'Hex: {msb[0]-i:X}\n'
+                  f'Oct: {msb[0]-i:o}\n'
+                  f'Dec: {msb[0]-i}')
+            for j in range(8):
+                GPIO.output(SER,int(bin[j])-1)
+                GPIO.output(SRCLK,1)
+                wait(led_speed[0])
+                GPIO.output(SRCLK,0)
+                GPIO.output(RCLK,1)
+                wait(led_speed[0])
+                GPIO.output(RCLK,0)
+                wait(led_speed[1])
+
+        for i in range(lsb[1],msb[1]):
+            bin = f'{i:b}'
+            print('\n'+str(len(f'{msb[0]:b}')),
+                  f'bits = Bin: {i:08b} =\n\n'
+                  f'Hex: {i:X}\n'
+                  f'Oct: {i:o}\n'
+                  f'Dec: {i}')
+            for j in range(8):
+                GPIO.output(SER,int(bin[j]))
+                GPIO.output(SRCLK,1)
+                wait(led_speed[0])
+                GPIO.output(SRCLK,0)
+                GPIO.output(RCLK,1)
+                wait(led_speed[0])
+                GPIO.output(RCLK,0)
+                wait(led_speed[1])
+
+    except KeyboardInterrupt:
+        exec(stop_program_message)
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+def binary_bits_flow_default_inverse():
+
+    for i in range(8):
+        GPIO.output(SER,0)
+        GPIO.output(SRCLK,1)
+        wait(led_speed[0])
+        GPIO.output(SRCLK,0)
+    GPIO.output(RCLK,1)
+    wait(led_speed[0])
+    GPIO.output(RCLK,0)
+
+    try:
+        for i in range(msb[0],lsb[0],-1):
+            bin = f'{i:b}'
+            print('\n'+str(len(f'{msb[0]-i:b}')),
+                  f'bits = Bin: {(i & 0xff):08b} =\n\n'
+                  f'Hex: -{msb[0]-i:X}\n'
+                  f'Oct: -{msb[0]-i:o}\n'
+                  f'Dec: -{msb[0]-i}')
+            for j in range(8):
+                GPIO.output(SER,int(bin[j]))
+                GPIO.output(SRCLK,1)
+                wait(led_speed[0])
+                GPIO.output(SRCLK,0)
+                GPIO.output(RCLK,1)
+                wait(led_speed[0])
+                GPIO.output(RCLK,0)
+                wait(led_speed[1])
+
+        for i in range(lsb[1],msb[1]):
+            bin = f'{i:b}'
+            print('\n'+str(len(f'{msb[0]:b}')),
+                  f'bits = Bin: {(i & 0xff):08b} =\n\n'
+                  f'Hex: -{i:X}\n'
+                  f'Oct: -{i:o}\n'
+                  f'Dec: -{i}')
+            for j in range(8):
+                GPIO.output(SER,int(bin[j])-1)
+                GPIO.output(SRCLK,1)
+                wait(led_speed[0])
+                GPIO.output(SRCLK,0)
+                GPIO.output(RCLK,1)
+                wait(led_speed[0])
+                GPIO.output(RCLK,0)
+                wait(led_speed[1])
+
+    except KeyboardInterrupt:
+        exec(stop_program_message)
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+binary_bits_trix = [
+    binary_bits_default,
+    binary_bits_inverse,
+    binary_bits_mirror,
+    binary_bits_mirror_inverse,
+    binary_bits_flow_default,
+    binary_bits_flow_default_inverse]
+
+# Create an IndexError handler to
+# cut off the buzzers, should you call
+# an index value higher than [5].
+
+# Note: index values always start at index zero
+# not index one. Keep this in mind, should you
+# accidentally call an index value higher than
+# the index range.
+
+try:
+    binary_bits_trix[0]()
+except IndexError:
+    print('index value exceeds index range limit')
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+for i in range(8):
+    GPIO.output(SER,0)
+    GPIO.output(SRCLK,1)
+    wait(led_speed[0])
+    GPIO.output(SRCLK,0)
+GPIO.output(RCLK,1)
+wait(led_speed[0])
+GPIO.output(RCLK,0)
+
+GPIO.cleanup() # GPI.cleanup() sets all GPIO pins to LOW/OFF state
