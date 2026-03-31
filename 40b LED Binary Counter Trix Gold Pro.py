@@ -1,4 +1,4 @@
-# 8b LED Binary Counter Trix Gold Pro Python program example:
+# 40 LED Binary Counter Trix Gold Pro Python program example:
 
 # Created by Joseph C. Richardson, GitHub.com
 
@@ -13,7 +13,7 @@
 
 # Raspberry Pi 4 = 1
 # breadboard = 1 or more depending
-# 74HC595 shift register = 1
+# 74HC595 shift register = 5
 # 3V active buzzer = 1
 # PNP transistor = 1
 # 1kΩ ohm pull-up resister for PNP transistor = 1
@@ -22,19 +22,19 @@
 # NPN transistor = 1
 # 10kΩ ohm pull-down resister for NPN transistor = 1
 # logic power = on, 1
-# LED (Light-Emitting Diode) = 8
-# 220Ω ohm resistor = 8
-# jumper wire = approx. 24 or more +2 for the Rasp pi 4 fan
+# LED (Light-Emitting Diode) = 40
+# 220Ω ohm resistor = 40
+# jumper wire = approx. 56 or more +2 for the Rasp pi 4 fan
 
 # Note: use two other jumper wires for
 # the Raspberry Pi 4 fan, while in use/
 # operation.
 
-# 8b LED Binary Counter Trix Python program example:
+# 40b LED Binary Counter Trix Python program example:
 
 # This Raspberry Pi 4 Python program allows
 # users to have tons of fun, while learning
-# how one 8b 74HC595 shift register works.
+# how five 8b 74HC595 shift registers work.
 
 # We will use the breadboard method:
 
@@ -93,8 +93,8 @@ control_shift = SER,SRCLK,RCLK
 
 for i in control_shift:GPIO.setup(i,GPIO.OUT)  # setup desired GPIO pinouts
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-msb = 255,256  # most significant bits
-lsb = 127,128  # least significant bits
+msb = 10995_1162_7775,10995_1162_7776  # most significant bits
+lsb = 5497_5581_3887,5497_5581_3888  # least significant bits
 
 led_speed = 0.0000006,.08,1  # pause duration
 
@@ -110,7 +110,7 @@ print('cleanup/release all GPIO pinouts \
 to LOW state.')
 '''
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-for i in range(8):
+for i in range(40):
     GPIO.output(SER,0)
     GPIO.output(SRCLK,1)
     wait(led_speed[0])
@@ -121,7 +121,7 @@ GPIO.output(RCLK,0)
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 def binary_bits_default():
 
-    for i in range(8):
+    for i in range(40):
         GPIO.output(SER,0)
         GPIO.output(SRCLK,1)
         wait(led_speed[0])
@@ -134,11 +134,11 @@ def binary_bits_default():
         for i in range(msb[0],lsb[0],-1):
             bin = f'{i:b}'
             print('\n'+str(len(f'{msb[0]-i:b}')),
-                  f'bits = Bin: {msb[0]-i:08b} =\n\n'
+                  f'bits = Bin: {msb[0]-i:040b} =\n\n'
                   f'Hex: {msb[0]-i:X}\n'
                   f'Oct: {msb[0]-i:o}\n'
-                  f'Dec: {msb[0]-i}')
-            for j in range(8):
+                  f'Dec: {msb[0]-i:,}')
+            for j in range(40):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j])-1)
                 GPIO.output(SRCLK,1)
@@ -153,11 +153,11 @@ def binary_bits_default():
         for i in range(lsb[1],msb[1]):
             bin = f'{i:b}'
             print('\n'+str(len(f'{msb[0]:b}')),
-                  f'bits = Bin: {i:08b} =\n\n'
+                  f'bits = Bin: {i:040b} =\n\n'
                   f'Hex: {i:X}\n'
                   f'Oct: {i:o}\n'
-                  f'Dec: {i}')
-            for j in range(8):
+                  f'Dec: {i:,}')
+            for j in range(40):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j]))
                 GPIO.output(SRCLK,1)
@@ -174,7 +174,7 @@ def binary_bits_default():
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 def binary_bits_inverse():
 
-    for i in range(8):
+    for i in range(40):
         GPIO.output(SER,0)
         GPIO.output(SRCLK,1)
         wait(led_speed[0])
@@ -187,11 +187,11 @@ def binary_bits_inverse():
         for i in range(msb[0],lsb[0],-1):
             bin = f'{i:b}'
             print('\n'+str(len(f'{msb[0]-i:b}')),
-                  f'bits = Bin: {(i & 0xff):08b} =\n\n'
+                  f'bits = Bin: {(i & 0xffffffffff):040b} =\n\n'
                   f'Hex: -{msb[0]-i:X}\n'
                   f'Oct: -{msb[0]-i:o}\n'
-                  f'Dec: -{msb[0]-i}')
-            for j in range(8):
+                  f'Dec: -{msb[0]-i:,}')
+            for j in range(40):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j]))
                 GPIO.output(SRCLK,1)
@@ -206,11 +206,11 @@ def binary_bits_inverse():
         for i in range(lsb[1],msb[1]):
             bin = f'{i:b}'
             print('\n'+str(len(f'{msb[0]:b}')),
-                  f'bits = Bin: {(i & 0xff):08b} =\n\n'
+                  f'bits = Bin: {(i & 0xffffffffff):040b} =\n\n'
                   f'Hex: -{i:X}\n'
                   f'Oct: -{i:o}\n'
-                  f'Dec: -{i}')
-            for j in range(8):
+                  f'Dec: -{i:,}')
+            for j in range(40):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j])-1)
                 GPIO.output(SRCLK,1)
@@ -227,7 +227,7 @@ def binary_bits_inverse():
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 def binary_bits_mirror():
 
-    for i in range(8):
+    for i in range(40):
         GPIO.output(SER,0)
         GPIO.output(SRCLK,1)
         wait(led_speed[0])
@@ -239,13 +239,13 @@ def binary_bits_mirror():
     try:
         for i in range(msb[0],lsb[0],-1):
             bin = f'{i:b}'
-            rev = f'{msb[0]-i:08b}'[::-1]
+            rev = f'{msb[0]-i:040b}'[::-1]
             print('\n'+str(len(f'{msb[0]-i:b}')),
                   f'bits = Bin: {rev} =\n\n'
                   f'Hex: {msb[0]-i:X}\n'
                   f'Oct: {msb[0]-i:o}\n'
-                  f'Dec: {msb[0]-i}')
-            for j in range(7,-1,-1):
+                  f'Dec: {msb[0]-i:,}')
+            for j in range(39,-1,-1):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j])-1)
                 GPIO.output(SRCLK,1)
@@ -259,13 +259,13 @@ def binary_bits_mirror():
 
         for i in range(lsb[1],msb[1]):
             bin = f'{i:b}'
-            rev = f'{i:08b}'[::-1]
+            rev = f'{i:040b}'[::-1]
             print('\n'+str(len(f'{msb[0]:b}')),
                   f'bits = Bin: {rev} =\n\n'
                   f'Hex: {i:X}\n'
                   f'Oct: {i:o}\n'
-                  f'Dec: {i}')
-            for j in range(7,-1,-1):
+                  f'Dec: {i:,}')
+            for j in range(39,-1,-1):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j]))
                 GPIO.output(SRCLK,1)
@@ -282,7 +282,7 @@ def binary_bits_mirror():
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 def binary_bits_mirror_inverse():
 
-    for i in range(8):
+    for i in range(40):
         GPIO.output(SER,0)
         GPIO.output(SRCLK,1)
         wait(led_speed[0])
@@ -294,13 +294,13 @@ def binary_bits_mirror_inverse():
     try:
         for i in range(msb[0],lsb[0],-1):
             bin = f'{i:b}'
-            rev = f'{(i & 0xff):08b}'[::-1]
+            rev = f'{(i & 0xffffffffff):040b}'[::-1]
             print('\n'+str(len(f'{msb[0]-i:b}')),
                   f'bits = Bin: {rev} =\n\n'
                   f'Hex: -{msb[0]-i:X}\n'
                   f'Oct: -{msb[0]-i:o}\n'
-                  f'Dec: -{msb[0]-i}')
-            for j in range(7,-1,-1):
+                  f'Dec: -{msb[0]-i:,}')
+            for j in range(39,-1,-1):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j]))
                 GPIO.output(SRCLK,1)
@@ -314,13 +314,13 @@ def binary_bits_mirror_inverse():
 
         for i in range(lsb[1],msb[1]):
             bin = f'{i:b}'
-            rev = f'{(i & 0xff):08b}'[::-1]
+            rev = f'{(i & 0xffffffffff):040b}'[::-1]
             print('\n'+str(len(f'{msb[0]:b}')),
                   f'bits = Bin: {rev} =\n\n'
                   f'Hex: -{i:X}\n'
                   f'Oct: -{i:o}\n'
-                  f'Dec: -{i}')
-            for j in range(7,-1,-1):
+                  f'Dec: -{i:,}')
+            for j in range(39,-1,-1):
                 exec(beep_on)
                 GPIO.output(SER,int(bin[j])-1)
                 GPIO.output(SRCLK,1)
@@ -337,7 +337,7 @@ def binary_bits_mirror_inverse():
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 def binary_bits_flow_default():
 
-    for i in range(8):
+    for i in range(40):
         GPIO.output(SER,0)
         GPIO.output(SRCLK,1)
         wait(led_speed[0])
@@ -350,11 +350,11 @@ def binary_bits_flow_default():
         for i in range(msb[0],lsb[0],-1):
             bin = f'{i:b}'
             print('\n'+str(len(f'{msb[0]-i:b}')),
-                  f'bits = Bin: {msb[0]-i:08b} =\n\n'
+                  f'bits = Bin: {msb[0]-i:040b} =\n\n'
                   f'Hex: {msb[0]-i:X}\n'
                   f'Oct: {msb[0]-i:o}\n'
-                  f'Dec: {msb[0]-i}')
-            for j in range(8):
+                  f'Dec: {msb[0]-i:,}')
+            for j in range(40):
                 GPIO.output(SER,int(bin[j])-1)
                 GPIO.output(SRCLK,1)
                 wait(led_speed[0])
@@ -367,11 +367,11 @@ def binary_bits_flow_default():
         for i in range(lsb[1],msb[1]):
             bin = f'{i:b}'
             print('\n'+str(len(f'{msb[0]:b}')),
-                  f'bits = Bin: {i:08b} =\n\n'
+                  f'bits = Bin: {i:040b} =\n\n'
                   f'Hex: {i:X}\n'
                   f'Oct: {i:o}\n'
-                  f'Dec: {i}')
-            for j in range(8):
+                  f'Dec: {i:,}')
+            for j in range(40):
                 GPIO.output(SER,int(bin[j]))
                 GPIO.output(SRCLK,1)
                 wait(led_speed[0])
@@ -386,7 +386,7 @@ def binary_bits_flow_default():
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 def binary_bits_flow_default_inverse():
 
-    for i in range(8):
+    for i in range(40):
         GPIO.output(SER,0)
         GPIO.output(SRCLK,1)
         wait(led_speed[0])
@@ -399,11 +399,11 @@ def binary_bits_flow_default_inverse():
         for i in range(msb[0],lsb[0],-1):
             bin = f'{i:b}'
             print('\n'+str(len(f'{msb[0]-i:b}')),
-                  f'bits = Bin: {(i & 0xff):08b} =\n\n'
+                  f'bits = Bin: {(i & 0xffffffffff):040b} =\n\n'
                   f'Hex: -{msb[0]-i:X}\n'
                   f'Oct: -{msb[0]-i:o}\n'
-                  f'Dec: -{msb[0]-i}')
-            for j in range(8):
+                  f'Dec: -{msb[0]-i:,}')
+            for j in range(40):
                 GPIO.output(SER,int(bin[j]))
                 GPIO.output(SRCLK,1)
                 wait(led_speed[0])
@@ -416,11 +416,11 @@ def binary_bits_flow_default_inverse():
         for i in range(lsb[1],msb[1]):
             bin = f'{i:b}'
             print('\n'+str(len(f'{msb[0]:b}')),
-                  f'bits = Bin: {(i & 0xff):08b} =\n\n'
+                  f'bits = Bin: {(i & 0xffffffffff):040b} =\n\n'
                   f'Hex: -{i:X}\n'
                   f'Oct: -{i:o}\n'
-                  f'Dec: -{i}')
-            for j in range(8):
+                  f'Dec: -{i:,}')
+            for j in range(40):
                 GPIO.output(SER,int(bin[j])-1)
                 GPIO.output(SRCLK,1)
                 wait(led_speed[0])
@@ -455,7 +455,7 @@ try:
 except IndexError:
     print('index value exceeds index range limit')
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-for i in range(8):
+for i in range(40):
     GPIO.output(SER,0)
     GPIO.output(SRCLK,1)
     wait(led_speed[0])

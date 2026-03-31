@@ -34,7 +34,7 @@
 
 # This Raspberry Pi 4 Python program allows
 # users to have tons of fun, while learning
-# how three 8b 74HC595 shift registers work.
+# how two 8b 74HC595 shift registers work.
 
 # We will use the breadboard method:
 
