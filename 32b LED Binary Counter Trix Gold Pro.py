@@ -355,6 +355,7 @@ def binary_bits_flow_default():
                   f'Oct: {msb[0]-i:o}\n'
                   f'Dec: {msb[0]-i:,}')
             for j in range(32):
+                exec(beep_off)
                 GPIO.output(SER,int(bin[j])-1)
                 GPIO.output(SRCLK,1)
                 wait(led_speed[0])
@@ -362,6 +363,7 @@ def binary_bits_flow_default():
                 GPIO.output(RCLK,1)
                 wait(led_speed[0])
                 GPIO.output(RCLK,0)
+                exec(beep_off)
                 wait(led_speed[1])
 
         for i in range(lsb[1],msb[1]):
@@ -372,6 +374,7 @@ def binary_bits_flow_default():
                   f'Oct: {i:o}\n'
                   f'Dec: {i:,}')
             for j in range(32):
+                exec(beep_off)
                 GPIO.output(SER,int(bin[j]))
                 GPIO.output(SRCLK,1)
                 wait(led_speed[0])
@@ -379,6 +382,7 @@ def binary_bits_flow_default():
                 GPIO.output(RCLK,1)
                 wait(led_speed[0])
                 GPIO.output(RCLK,0)
+                exec(beep_off)
                 wait(led_speed[1])
 
     except KeyboardInterrupt:
@@ -404,6 +408,7 @@ def binary_bits_flow_default_inverse():
                   f'Oct: -{msb[0]-i:o}\n'
                   f'Dec: -{msb[0]-i:,}')
             for j in range(32):
+                exec(beep_off)
                 GPIO.output(SER,int(bin[j]))
                 GPIO.output(SRCLK,1)
                 wait(led_speed[0])
@@ -411,6 +416,7 @@ def binary_bits_flow_default_inverse():
                 GPIO.output(RCLK,1)
                 wait(led_speed[0])
                 GPIO.output(RCLK,0)
+                exec(beep_off)
                 wait(led_speed[1])
 
         for i in range(lsb[1],msb[1]):
@@ -421,6 +427,7 @@ def binary_bits_flow_default_inverse():
                   f'Oct: -{i:o}\n'
                   f'Dec: -{i:,}')
             for j in range(32):
+                exec(beep_off)
                 GPIO.output(SER,int(bin[j])-1)
                 GPIO.output(SRCLK,1)
                 wait(led_speed[0])
@@ -428,6 +435,7 @@ def binary_bits_flow_default_inverse():
                 GPIO.output(RCLK,1)
                 wait(led_speed[0])
                 GPIO.output(RCLK,0)
+                exec(beep_off)
                 wait(led_speed[1])
 
     except KeyboardInterrupt:
