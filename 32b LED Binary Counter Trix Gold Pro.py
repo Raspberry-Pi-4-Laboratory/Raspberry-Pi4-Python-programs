@@ -20,7 +20,7 @@
 # logic power = on, 0
 # or if you like:
 # NPN transistor = 1
-# 10kΩ ohm pull-down resister for NPN transistor = 1
+# 1kΩ ohm pull-down resister for NPN transistor = 1
 # logic power = on, 1
 # LED (Light-Emitting Diode) = 32
 # 220Ω ohm resistor = 32
