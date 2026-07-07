@@ -109,7 +109,7 @@ GPIO.output(RCLK,1)  # Keep these lines of code outer indented.
 time.sleep(0.0000006)
 GPIO.output(RCLK,0)
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-# Byte Calculation for 34HC595 Shift Registers.
+# Byte Calculation for 74HC595 Shift Registers.
 
 shift_registers = 0,1,2,3,4,5,6  # default tuple
 
