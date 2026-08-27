@@ -14,13 +14,13 @@
 # Raspberry Pi 4 = 1
 # breadboard = 1 or more depending
 # 74HC595 shift register = 5
-# 3V active buzzer = 1
+# 5V active buzzer = 1
 # PNP transistor = 1
-# 1kΩ ohm pull-up resister for PNP transistor = 1
+# 1kΩ ohm resister for PNP transistor = 1
 # logic power = on, 0
 # or if you like:
 # NPN transistor = 1
-# 1kΩ ohm pull-down resister for NPN transistor = 1
+# 1kΩ ohm resister for NPN transistor = 1
 # logic power = on, 1
 # LED (Light-Emitting Diode) = 40
 # 220Ω ohm resistor = 40
