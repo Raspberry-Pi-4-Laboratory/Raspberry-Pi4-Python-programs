@@ -16,11 +16,11 @@
 # 74HC595 shift register = 2
 # 5V active buzzer = 1
 # PNP transistor = 1
-# 1kΩ ohm pull-up resister for PNP transistor = 1
+# 1kΩ ohm resister for PNP transistor = 1
 # logic power = on, 0
 # or if you like:
 # NPN transistor = 1
-# 1kΩ ohm pull-down resister for NPN transistor = 1
+# 1kΩ ohm resister for NPN transistor = 1
 # logic power = on, 1
 # LED (Light-Emitting Diode) = 16
 # 220Ω ohm resistor = 16
