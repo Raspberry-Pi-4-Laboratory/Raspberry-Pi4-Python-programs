@@ -680,6 +680,8 @@ input()  # Press Enter to exit this Raspberry pi 4 Python program
 display.lcd_clear()
 display.lcd_backlight(0)
 
+# Create a while loop to keep floating bits/LEDs in the off, zero state.
+
 while True:
     for i in range(16):
         GPIO.output(SER,0)
