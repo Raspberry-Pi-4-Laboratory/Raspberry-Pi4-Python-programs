@@ -30,9 +30,8 @@
 # 220Ω ohm resistor = 24
 # jumper wire = approx. 61 or more +2 for the Rasp pi 4 fan
 
-# Note: use two other jumper wires for
-# the Raspberry Pi 4 fan, while in use/
-# operation.
+# Note: use two other jumper wires for the Raspberry Pi 4
+# fan, while in use/operation.
 
 # 16b LED Binary Counter Trix Python program example:
 
