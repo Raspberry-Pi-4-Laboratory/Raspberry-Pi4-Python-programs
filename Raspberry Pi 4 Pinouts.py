@@ -1,4 +1,9 @@
 
+# The Complete RASPBERRY Pi 4 Pinout Conversion Table
+# for GPIO.BOARD and GPIO.BCM (Broadcom SOC Channel Method)
+
+# Created by Joseph C. Richardson, on GitHub.com
+
 # Note: be mindful while working with
 # electronics. There are mistakes that
 # cannot be corrected should you ignore
@@ -11,6 +16,8 @@
 # GPIO pins. I'm pretty new to using Raspberry Pi, I created
 # these Cheat Sheets examples for quick references and
 # understanding of the GPIO pin layout.
+
+# Created by Joseph C. Richardson
 
 # (GPIO) General Purpose Input/Output: Pinouts
 
@@ -69,7 +76,7 @@ GPIO.setup(6,GPIO.OUT)  # PIN 31
 GPIO.setup(7,GPIO.OUT)  # PIN 26
 GPIO.setup(8,GPIO.OUT)  # PIN 24
 GPIO.setup(9,GPIO.OUT)  # PIN 21
-GPIO.setup(10,GPIO.OUT  # PIN 19
+GPIO.setup(10,GPIO.OUT)  # PIN 19
 GPIO.setup(12,GPIO.OUT)  # PIN 32
 GPIO.setup(13,GPIO.OUT)  # PIN 33
 GPIO.setup(16,GPIO.OUT)  # PIN 36
