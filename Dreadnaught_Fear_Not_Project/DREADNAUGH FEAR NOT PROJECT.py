@@ -19,7 +19,7 @@
 # Raspberry Pi 4 = 1
 # breadboard = 5 or more depending
 # 74HC595 shift register = 2
-# I²C LCD1602 LCD display = 1
+# 5V I²C LCD1602 LCD display = 1
 # 5V passive buzzer = 2
 # 5V active buzzer = 1
 # PNP transistor = 3
@@ -27,7 +27,7 @@
 # logic power = on, 0
 # or if you like:
 # NPN transistor = 3
-# 10kΩ ohm resister for NPN transistor = 3
+# 1kΩ ohm resister for NPN transistor = 3
 # logic power = on, 1
 # LED (Light-Emitting Diode) = 18
 # LED RGB (Red, Green, Blue) = 2
