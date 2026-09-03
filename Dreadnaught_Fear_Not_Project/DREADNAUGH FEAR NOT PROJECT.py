@@ -1,7 +1,11 @@
 
 # DREADNAUGHT FEAR NOT PROJECT Python program example:
 
-# Created by Joseph C. Richardson, GitHub.com
+# Learn how to build the Dreadnaught Fear Not Project. Please
+# note: this Raspberry Pi 4 project and Python programming
+# examples might not be recommended for the novice/beginner.
+
+# Created by Joseph C. Richardson, on GitHub.com
 
 # Note: be mindful while working with
 # electronics. There are mistakes that

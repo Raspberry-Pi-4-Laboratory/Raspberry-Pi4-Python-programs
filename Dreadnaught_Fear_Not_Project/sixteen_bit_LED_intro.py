@@ -1,3 +1,18 @@
+
+# sixteen_bit_LED_intro Python program example:
+
+# Keep this Python program file inside the same directory/folder
+# where the DREADNAUGHT FEAR NOT PROJECT Python program
+# and LCD drivers reside. These two Python files and the LCD
+# drivers must be stored inside the same folder. Note: do not
+# store these two Python files inside the LCD drivers folder; the
+# LCD drivers folder must not be touched at all. Create and Name
+# a directory/folder: Dreadnaught_Fear_Not_Project. This directory/
+# folder is where the two Python program files and the LCD drivers
+# reside. Save the directory/folder in documents on the Raspberry
+# Pi 4 and store these two Python program files, along with the
+# LCD drivers inside it.
+
 leds = [
   '1000000000000001',
   '1100000000000011',
