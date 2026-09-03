@@ -37,7 +37,7 @@
 # Note: use two other jumper wires for the Raspberry Pi 4
 # fan, while in use/operation.
 
-# 16b LED Binary Counter Trix Python program example:
+# Dreadnaught Fear Not Project Python program example:
 
 # This Raspberry Pi 4 Python program allows
 # users to have tons of fun, while learning
